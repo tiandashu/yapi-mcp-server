@@ -124,15 +124,22 @@ export const getUserInfo = async (): Promise<UserInfoData> => {
 }
 ```
 
-## ⚙️ 环境变量
+## ⚙️ prompt 使用
 
-可通过环境变量配置日志级别：
+### yapi 中有哪些接口？
 
-```bash
-# 设置日志级别 (ERROR | WARN | INFO | DEBUG)
-export LOG_LEVEL=DEBUG
-node server.js
-```
+![](./docs/01.png)
+
+### 帮我更新一下 yapi 接口数据
+
+![](./docs/02.png)
+
+### 帮我生成 109220 的 mock 数据
+
+- 可以是 yapi 上接口对应的 id，也可以直接是接口名称
+- 生成 ts 类型和 axios 代码也类似
+
+![](./docs/03.png)
 
 ## 📄 许可证
 
