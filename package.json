@@ -5,11 +5,11 @@
 	"description": "yapi-mcp-server 能将 YApi 的接口定义自动化地转换成代码、类型和 Mock 数据，大大提升开发效率",
 	"main": "server.js",
 	"bin": {
-		"yapi-mcp-server": "./server.js"
+		"yapi-mcp-server": "./src/server.js"
 	},
 	"scripts": {
-		"start": "node server.js",
-		"dev": "node server.js"
+		"start": "node src/server.js",
+		"dev": "export LOG_LEVEL=DEBUG && npm start"
 	},
 	"license": "MIT",
 	"keywords": [

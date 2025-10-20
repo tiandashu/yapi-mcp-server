@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
-import schema from './src/schema/index.js'
-import tools from './src/func-tools/index.js'
+import schema from './schema/index.js'
+import tools from './func-tools/index.js'
 
 // 创建McpServer实例
 const server = new McpServer({
