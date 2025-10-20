@@ -137,9 +137,14 @@ export const getUserInfo = async (): Promise<UserInfoData> => {
 ### 帮我生成 109220 的 mock 数据
 
 - 可以是 yapi 上接口对应的 id，也可以直接是接口名称
-- 生成 ts 类型和 axios 代码也类似
 
 ![](./docs/03.png)
+
+### 帮我根据接口 109220 更新对应的 ts 类型
+
+- 可以是 yapi 上接口对应的 id，也可以直接是接口名称
+
+![](./docs/04.png)
 
 ## 📄 许可证
 
