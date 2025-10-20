@@ -11,6 +11,7 @@ export const getYApiDataSchema = {
 	interfacePath: z.string().optional().describe('指定接口路径'),
 	method: z.string().optional().describe('请求方法'),
 	listAll: z.boolean().optional().describe('是否列出所有接口'),
+	forceRefresh: z.boolean().optional().describe('是否强制刷新缓存，默认false'),
 }
 
 // 生成TypeScript类型定义
@@ -44,34 +45,10 @@ export const generateApiCodeSchema = {
 	requestLib: z.string().optional().describe('请求库类型: axios | fetch，默认axios'),
 }
 
-// YApi工作流程
-export const yapiWorkflowSchema = {
-	projectPath: z.string().optional().describe('项目路径，如果不提供则使用当前工作目录'),
-	interfacePath: z.string().optional().describe('指定接口路径'),
-	method: z.string().optional().describe('请求方法'),
-	generateMock: z.boolean().optional().describe('是否生成Mock数据，默认true'),
-	generateType: z.boolean().optional().describe('是否生成TypeScript类型，默认true'),
-	generateApi: z.boolean().optional().describe('是否生成API请求代码，默认false'),
-	mockType: z.string().optional().describe('Mock类型: full-完整响应, data-only-仅数据部分'),
-	requestLib: z.string().optional().describe('API请求库类型: axios | fetch，默认axios'),
-}
-
-// 保存YApi生成的文件
-export const saveYApiFilesSchema = {
-	projectPath: z.string().optional().describe('项目路径'),
-	types: z.any().optional().describe('类型定义数据'),
-	mockData: z.any().optional().describe('Mock数据'),
-	apiCode: z.any().optional().describe('API请求代码数据'),
-	config: z.any().optional().describe('配置对象，包含路径设置'),
-	filename: z.string().optional().describe('文件名前缀'),
-}
-
 export default {
 	readConfig: readConfigSchema,
 	getYApiData: getYApiDataSchema,
 	generateTypes: generateTypesSchema,
 	generateMockFromYApi: generateMockFromYApiSchema,
 	generateApiCode: generateApiCodeSchema,
-	yapiWorkflow: yapiWorkflowSchema,
-	saveYApiFiles: saveYApiFilesSchema,
 }

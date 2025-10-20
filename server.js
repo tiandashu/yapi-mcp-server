@@ -36,16 +36,6 @@ server.tool('generate_api_code', schema.generateApiCode, async (params) => {
 	return await tools.generateApiCode(params)
 })
 
-// YApi完整工作流工具
-server.tool('yapi_workflow', schema.yapiWorkflow, async (params) => {
-	return await tools.yapiWorkflow(params)
-})
-
-// 保存YApi生成文件工具
-server.tool('save_yapi_files', schema.saveYApiFiles, async (params) => {
-	return await tools.saveYApiFiles(params)
-})
-
 // 主函数
 async function main() {
 	try {

@@ -1,3 +1,6 @@
+import { generateInterfaceName } from '../../utils/naming.js'
+import * as logger from '../../utils/logger.js'
+
 /**
  * 将JSON Schema属性类型转换为TypeScript类型
  * @param {Object} property - JSON Schema属性对象
@@ -96,35 +99,6 @@ function generateInterfaceFromSchema(schemaStr, dataKey = 'data', interfaceName 
 }
 
 /**
- * 驼峰命名转换
- * @param {string} str - 原字符串
- * @returns {string} - 驼峰命名字符串
- */
-function toCamelCase(str) {
-	return str.replace(/[-_](.)/g, (_, char) => char.toUpperCase()).replace(/^(.)/, (char) => char.toUpperCase())
-}
-
-/**
- * 根据接口路径生成接口名称
- * @param {string} path - 接口路径
- * @param {string} method - 请求方法
- * @returns {string} - 接口名称
- */
-function generateInterfaceName(path, method) {
-	// 移除路径参数 {id} -> Id
-	const cleanPath = path.replace(/\{([^}]+)\}/g, (_, param) => toCamelCase(param))
-
-	// 分割路径并转换为驼峰命名
-	const pathParts = cleanPath.split('/').filter((part) => part)
-	const pathName = pathParts.map((part) => toCamelCase(part)).join('')
-
-	const methodName = method.toLowerCase()
-	const prefix = methodName === 'get' ? '' : toCamelCase(methodName)
-
-	return `${prefix}${pathName}Data`
-}
-
-/**
  * 生成TypeScript类型定义的MCP工具函数
  */
 export const generateTypes = async (params) => {
@@ -166,7 +140,7 @@ export const generateTypes = async (params) => {
 			],
 		}
 	} catch (error) {
-		console.error('生成TypeScript类型定义错误:', error.message)
+		logger.error('生成TypeScript类型定义错误:', error.message)
 		return {
 			content: [
 				{

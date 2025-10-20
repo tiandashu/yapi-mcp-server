@@ -1,15 +1,30 @@
 import axios from 'axios'
 import fs from 'fs'
 import path from 'path'
+import { memoryCache } from '../../utils/cache.js'
+import * as logger from '../../utils/logger.js'
 
 /**
- * 从YApi获取接口数据
+ * 从YApi获取接口数据（带缓存）
  * @param {string} remoteUrl - YApi导出接口URL
+ * @param {boolean} forceRefresh - 是否强制刷新，跳过缓存
  * @returns {Promise<Array>} - 返回接口数据数组
  */
-async function fetchYApiData(remoteUrl) {
+async function fetchYApiData(remoteUrl, forceRefresh = false) {
+	// 生成缓存键
+	const cacheKey = `yapi:data:${remoteUrl}`
+
+	// 如果不是强制刷新，先尝试从缓存获取
+	if (!forceRefresh) {
+		const cached = memoryCache.get(cacheKey)
+		if (cached) {
+			logger.info('从缓存获取YApi数据')
+			return cached
+		}
+	}
+
 	try {
-		console.log(`正在从YApi获取数据: ${remoteUrl}`)
+		logger.info(`正在从YApi获取数据: ${remoteUrl}`)
 
 		const response = await axios.get(remoteUrl, {
 			timeout: 30000, // 30秒超时
@@ -26,7 +41,11 @@ async function fetchYApiData(remoteUrl) {
 			throw new Error('YApi返回数据格式不正确，期望为数组格式')
 		}
 
-		console.log(`成功获取YApi数据，共${response.data.length}个分类`)
+		logger.success(`成功获取YApi数据，共${response.data.length}个分类`)
+
+		// 存入缓存，默认30分钟过期
+		memoryCache.set(cacheKey, response.data, 30 * 60 * 1000)
+
 		return response.data
 	} catch (error) {
 		if (error.code === 'ECONNABORTED') {
@@ -98,14 +117,14 @@ function getAllInterfaces(yapiData) {
  */
 export const getYApiData = async (params) => {
 	try {
-		const { remoteUrl, interfacePath, method, listAll } = params
+		const { remoteUrl, interfacePath, method, listAll, forceRefresh = false } = params
 
 		if (!remoteUrl) {
 			throw new Error('remoteUrl参数不能为空')
 		}
 
-		// 获取YApi数据
-		const yapiData = await fetchYApiData(remoteUrl)
+		// 获取YApi数据（带缓存）
+		const yapiData = await fetchYApiData(remoteUrl, forceRefresh)
 
 		if (listAll) {
 			// 返回所有接口列表
@@ -187,7 +206,7 @@ export const getYApiData = async (params) => {
 			}
 		}
 	} catch (error) {
-		console.error('获取YApi数据错误:', error.message)
+		logger.error('获取YApi数据错误:', error.message)
 		return {
 			content: [
 				{

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import * as logger from '../../utils/logger.js'
 
 /**
  * 查找并读取用户项目中的yapi.config.json配置文件
@@ -25,7 +26,7 @@ async function findYApiConfig(projectPath) {
 			const configContent = await fs.promises.readFile(configFilePath, 'utf8')
 			const config = JSON.parse(configContent)
 
-			console.log(`找到配置文件: ${configFilePath}`)
+			logger.success(`找到配置文件: ${configFilePath}`)
 
 			// 验证配置文件必要字段
 			if (!config.remoteUrl) {
@@ -89,7 +90,7 @@ export const readConfig = async (params) => {
 			],
 		}
 	} catch (error) {
-		console.error('读取配置文件错误:', error.message)
+		logger.error('读取配置文件错误:', error.message)
 		return {
 			content: [
 				{

@@ -1,3 +1,5 @@
+import * as logger from '../../utils/logger.js'
+
 /**
  * 根据JSON Schema生成Mock数据
  * @param {Object} property - JSON Schema属性对象
@@ -222,7 +224,7 @@ export const generateMockFromYApi = async (params) => {
 			],
 		}
 	} catch (error) {
-		console.error('生成Mock数据错误:', error.message)
+		logger.error('生成Mock数据错误:', error.message)
 		return {
 			content: [
 				{

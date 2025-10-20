@@ -1,3 +1,6 @@
+import { generateFunctionName, capitalize } from '../../utils/naming.js'
+import * as logger from '../../utils/logger.js'
+
 /**
  * 生成API请求代码
  * @param {Object} params - 参数
@@ -76,7 +79,7 @@ export const generateApiCode = async (params) => {
 			],
 		}
 	} catch (error) {
-		console.error('生成API代码错误:', error.message)
+		logger.error('生成API代码错误:', error.message)
 		return {
 			content: [
 				{
@@ -93,33 +96,6 @@ export const generateApiCode = async (params) => {
 				},
 			],
 		}
-	}
-}
-
-/**
- * 根据路径和方法生成函数名称
- */
-function generateFunctionName(path, method) {
-	// 移除路径参数 {xxx} 并转换为驼峰命名
-	const cleanPath = path
-		.replace(/\{[^}]+\}/g, '') // 移除路径参数
-		.split('/')
-		.filter(Boolean)
-		.map((segment, index) => {
-			// 第一个单词小写，其余首字母大写
-			if (index === 0) {
-				return segment.toLowerCase()
-			}
-			return segment.charAt(0).toUpperCase() + segment.slice(1).toLowerCase()
-		})
-		.join('')
-
-	// 添加方法前缀
-	const methodPrefix = method.toLowerCase()
-	if (methodPrefix === 'get') {
-		return cleanPath.startsWith('get') ? cleanPath : `get${cleanPath.charAt(0).toUpperCase() + cleanPath.slice(1)}`
-	} else {
-		return `${methodPrefix}${cleanPath.charAt(0).toUpperCase() + cleanPath.slice(1)}`
 	}
 }
 
@@ -147,7 +123,7 @@ function generateAxiosCode({ functionName, apiPath, method, title, reqParams, re
 			interfaceFields.push(`  /** ${query.desc || query.name} */\n  ${query.name}${optional}: string | number`)
 		})
 
-		paramsInterface = `interface ${functionName.charAt(0).toUpperCase() + functionName.slice(1)}Params {
+		paramsInterface = `interface ${capitalize(functionName)}Params {
 ${interfaceFields.join('\n')}
 }
 
@@ -155,8 +131,7 @@ ${interfaceFields.join('\n')}
 	}
 
 	// 生成函数参数
-	const functionParams =
-		hasParams || hasQuery ? `params: ${functionName.charAt(0).toUpperCase() + functionName.slice(1)}Params` : ''
+	const functionParams = hasParams || hasQuery ? `params: ${capitalize(functionName)}Params` : ''
 
 	// 生成URL构造
 	let urlConstruction = `'${apiPath}'`
@@ -210,15 +185,14 @@ function generateFetchCode({ functionName, apiPath, method, title, reqParams, re
 			interfaceFields.push(`  /** ${query.desc || query.name} */\n  ${query.name}${optional}: string | number`)
 		})
 
-		paramsInterface = `interface ${functionName.charAt(0).toUpperCase() + functionName.slice(1)}Params {
+		paramsInterface = `interface ${capitalize(functionName)}Params {
 ${interfaceFields.join('\n')}
 }
 
 `
 	}
 
-	const functionParams =
-		hasParams || hasQuery ? `params: ${functionName.charAt(0).toUpperCase() + functionName.slice(1)}Params` : ''
+	const functionParams = hasParams || hasQuery ? `params: ${capitalize(functionName)}Params` : ''
 
 	// 生成URL构造
 	let urlConstruction = `'${apiPath}'`
