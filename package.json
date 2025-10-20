@@ -3,13 +3,15 @@
 	"version": "0.0.1",
 	"author": "tianlu",
 	"description": "yapi-mcp-server 能将 YApi 的接口定义自动化地转换成代码、类型和 Mock 数据，大大提升开发效率",
-	"main": "server.js",
+	"main": "dist/server.js",
 	"bin": {
-		"yapi-mcp-server": "./src/server.js"
+		"yapi-mcp-server": "./dist/server.js"
 	},
 	"scripts": {
-		"start": "node src/server.js",
-		"dev": "export LOG_LEVEL=DEBUG && npm start"
+		"dev": "export LOG_LEVEL=DEBUG && node src/server.js",
+		"build": "rollup -c",
+		"start": "node dist/server.js",
+		"prepublishOnly": "npm run build"
 	},
 	"license": "MIT",
 	"keywords": [
@@ -25,14 +27,18 @@
 		"zod": "^3.24.2"
 	},
 	"files": [
-		"src",
-		"server.js",
+		"dist",
 		"package.json",
-		"README.md",
-		"YAPI-USAGE.md"
+		"README.md"
 	],
 	"type": "module",
 	"engines": {
 		"node": ">=18.0.0"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^28.0.8",
+		"@rollup/plugin-node-resolve": "^16.0.3",
+		"@rollup/plugin-terser": "^0.4.4",
+		"rollup": "^4.52.5"
 	}
 }
