@@ -14,6 +14,14 @@
 		"prepublishOnly": "npm run build"
 	},
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tiandashu/yapi-mcp-server.git"
+	},
+	"homepage": "https://github.com/tiandashu/yapi-mcp-server#readme",
+	"bugs": {
+		"url": "https://github.com/tiandashu/yapi-mcp-server/issues"
+	},
 	"keywords": [
 		"mcp",
 		"typescript",

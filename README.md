@@ -21,14 +21,14 @@
 {
 	"yapi": {
 		"command": "npx",
-		"args": ["-y", "yapi-mcp-server", "--stdio"]
+		"args": ["-y", "@vtian/yapi-mcp-server", "--stdio"]
 	}
 }
 ```
 
 ### 2. 获取 yapi 参数
 
-![yapi设置](./docs/yapi.png)
+![yapi设置](https://cdn.jsdelivr.net/gh/tiandashu/yapi-mcp-server@main/docs/yapi.png)
 
 ### 3. 项目中配置 yapi.config.json
 
@@ -85,23 +85,23 @@
 
 ### 🔧 yapi 中有哪些接口？
 
-![](./docs/01.png)
+![](https://cdn.jsdelivr.net/gh/tiandashu/yapi-mcp-server@main/docs/01.png)
 
 ### 🔧 帮我更新一下 yapi 接口数据
 
-![](./docs/02.png)
+![](https://cdn.jsdelivr.net/gh/tiandashu/yapi-mcp-server@main/docs/02.png)
 
 ### 🔧 帮我生成 109220 的 mock 数据
 
 - 可以是 yapi 上接口对应的 id，也可以直接是接口名称
 
-![](./docs/03.png)
+![](https://cdn.jsdelivr.net/gh/tiandashu/yapi-mcp-server@main/docs/03.png)
 
 ### 🔧 帮我根据接口 109220 更新对应的 ts 类型
 
 - 可以是 yapi 上接口对应的 id，也可以直接是接口名称
 
-![](./docs/04.png)
+![](https://cdn.jsdelivr.net/gh/tiandashu/yapi-mcp-server@main/docs/04.png)
 
 ### 🔧 帮我根据接口 109220 生成 axios 代码
 
