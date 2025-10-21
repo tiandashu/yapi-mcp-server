@@ -29,6 +29,7 @@
 	"files": [
 		"dist",
 		"package.json",
+		"docs",
 		"README.md"
 	],
 	"type": "module",
