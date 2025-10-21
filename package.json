@@ -32,6 +32,9 @@
 		"docs",
 		"README.md"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"type": "module",
 	"engines": {
 		"node": ">=18.0.0"
