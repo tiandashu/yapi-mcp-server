@@ -13,7 +13,7 @@
 - **API 请求代码生成**: 自动生成 Axios 或 Fetch 风格的 API 请求函数
 - **智能缓存机制**: 自动缓存 YApi 数据 30 分钟，减少网络请求
 
-## 快速开始
+## ✨ 快速开始
 
 ### 1. cursor 中安装 yapi-mcp-server
 
@@ -57,7 +57,7 @@
 - `typePath`: 类型文件输出路径，默认 "src/types"
 - `apiPath`: API 代码输出路径，默认 "src/api"
 
-## 🛠️ 可用工具
+## ✨ 可用工具
 
 本项目提供以下 5 个 MCP 工具，可以通过支持 MCP 协议的客户端（如 Claude Desktop、cursor）调用：
 
@@ -81,7 +81,33 @@
 
 生成 Axios 或 Fetch 风格的 API 请求函数代码。
 
-## 生成的文件示例
+## ✨ prompt 使用
+
+### 🔧 yapi 中有哪些接口？
+
+![](./docs/01.png)
+
+### 🔧 帮我更新一下 yapi 接口数据
+
+![](./docs/02.png)
+
+### 🔧 帮我生成 109220 的 mock 数据
+
+- 可以是 yapi 上接口对应的 id，也可以直接是接口名称
+
+![](./docs/03.png)
+
+### 🔧 帮我根据接口 109220 更新对应的 ts 类型
+
+- 可以是 yapi 上接口对应的 id，也可以直接是接口名称
+
+![](./docs/04.png)
+
+### 🔧 帮我根据接口 109220 生成 axios 代码
+
+- 效果同上
+
+## ✨ 生成的文件示例
 
 ### TypeScript 类型定义
 
@@ -123,28 +149,6 @@ export const getUserInfo = async (): Promise<UserInfoData> => {
 	}
 }
 ```
-
-## ⚙️ prompt 使用
-
-### yapi 中有哪些接口？
-
-![](./docs/01.png)
-
-### 帮我更新一下 yapi 接口数据
-
-![](./docs/02.png)
-
-### 帮我生成 109220 的 mock 数据
-
-- 可以是 yapi 上接口对应的 id，也可以直接是接口名称
-
-![](./docs/03.png)
-
-### 帮我根据接口 109220 更新对应的 ts 类型
-
-- 可以是 yapi 上接口对应的 id，也可以直接是接口名称
-
-![](./docs/04.png)
 
 ## 📄 许可证
 
