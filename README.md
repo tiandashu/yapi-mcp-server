@@ -19,9 +19,11 @@
 
 ```json
 {
-	"yapi": {
-		"command": "npx",
-		"args": ["-y", "@vtian/yapi-mcp-server", "--stdio"]
+	"mcpServers": {
+		"yapi-mcp": {
+			"command": "npx",
+			"args": ["-y", "@vtian/yapi-mcp-server", "--stdio"]
+		}
 	}
 }
 ```
