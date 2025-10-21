@@ -1,5 +1,5 @@
 {
-	"name": "yapi-mcp-server",
+	"name": "@vtian/yapi-mcp-server",
 	"version": "0.0.1",
 	"author": "tianlu",
 	"description": "yapi-mcp-server 能将 YApi 的接口定义自动化地转换成代码、类型和 Mock 数据，大大提升开发效率",
